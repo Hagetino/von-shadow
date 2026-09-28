@@ -1,0 +1,24 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/path/to/von-shadow/.venv/bin/von-shadow log || true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/path/to/von-shadow/.venv/bin/von-shadow tag --background >/dev/null 2>&1 || true"
+          }
+        ]
+      }
+    ]
+  }
+}
