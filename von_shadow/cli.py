@@ -4,7 +4,7 @@ Commands
   log      Hook entry point (UserPromptSubmit). Reads the hook JSON on stdin and appends the
            prompt to the queue. No model load, returns in milliseconds, never blocks a prompt.
   tag      Tags every queued prompt with von, appends to predictions.jsonl, clears the queue.
-           Run it from a Stop hook with --background so it never holds RAM between sessions.
+           Run it from a SessionEnd hook with --background so it never holds RAM between sessions.
   label    Walk through untagged-by-you predictions and mark them right/wrong. Builds the
            labelled set a later fine-tune needs.
   report   Counts per tag, confidence spread, and accuracy against your labels.
@@ -72,7 +72,7 @@ def cmd_log(_args):
 
 def cmd_tag(args):
     if args.background:
-        # Detach so the Stop hook returns immediately.
+        # Detach so the SessionEnd hook returns immediately.
         subprocess.Popen([sys.executable, "-m", "von_shadow.cli", "tag"],
                          stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
                          start_new_session=True)

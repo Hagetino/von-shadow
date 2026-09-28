@@ -20,7 +20,7 @@ wire-compatible with Jev's `/v1/systemone` API). It fits in 8 GB and answers in 
 
 ```
 you type a prompt ──► UserPromptSubmit hook ──► von-shadow log   (queue, ~ms, no model)
-session ends     ──► Stop hook              ──► von-shadow tag --background
+session ends     ──► SessionEnd hook        ──► von-shadow tag --background
                                                  └─ loads von, tags the queue, exits
 you, later       ──► von-shadow label        (mark tags right/wrong)
                  ──► von-shadow report       (tag counts, confidence, accuracy vs you)
