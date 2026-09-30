@@ -91,11 +91,13 @@ The shipped calibration was fitted on Jev benchmark shapes and does not transfer
 prompts. Refit it on the probe labels (frozen weights, CPU, about a minute on an M1):
 
 ```bash
-uv run von calibrate evals/calibration_labels.jsonl --device cpu
+uv run von calibrate evals/calibration_labels.jsonl --device cpu \
+  --out ~/.local/share/von-shadow/checkpoints/von-1.2/marker_calibration.json
 ```
 
-This writes `marker_calibration.json` next to the model checkpoint, and von uses it from then
-on. On the 38 probe labels a scalar temperature (T≈3.1) won and calibration error fell from 0.21
+von looks for `checkpoints/von-1.2/marker_calibration.json` relative to the current directory,
+so `von-shadow tag` switches to `~/.local/share/von-shadow` before loading von; `--out` puts the
+file where it will be found. On the 38 probe labels a scalar temperature (T≈3.1) won and calibration error fell from 0.21
 to 0.13. **It changes how sure von claims to be, never which answer it picks**: accuracy is
 identical before and after. The practical gain is that wrong answers now come with low
 confidence (the German `passt, genau so` miss dropped from 0.92 to 0.21). Predictions tagged

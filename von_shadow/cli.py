@@ -92,6 +92,9 @@ def cmd_tag(args):
         if not items:
             work.unlink()
             return 0
+        # von resolves its checkpoint (and a `von calibrate` result) relative to the working
+        # directory. Hooks run from whatever project is open, so pin it to HOME.
+        os.chdir(HOME)
         import von  # heavy import, only when there is work
 
         t0 = time.time()
