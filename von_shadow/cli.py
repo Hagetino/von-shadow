@@ -99,7 +99,7 @@ def cmd_tag(args):
             r = von.decide(state=it["text"], choices=CHOICES, instructions=INSTRUCTIONS)
             _append(PREDICTIONS, {**it, "tag": r.choice, "confidence": round(r.confidence, 3),
                                   "probabilities": {k: round(v, 3) for k, v in r.probabilities.items()},
-                                  "model": "von-1.3", "tagged_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
+                                  "model": "von-1.3.4+cal", "tagged_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
         work.unlink()
         print(f"tagged {len(items)} prompts in {time.time() - t0:.1f}s -> {PREDICTIONS}")
     return 0

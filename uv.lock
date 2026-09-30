@@ -939,7 +939,7 @@ wheels = [
 
 [[package]]
 name = "von-sdk"
-version = "1.3.1"
+version = "1.3.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "accelerate" },
@@ -951,9 +951,9 @@ dependencies = [
     { name = "transformers" },
     { name = "uvicorn" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/43/5e/543dd1ad163fe0af5cec9e3245b4ce262b1d77cb41d95ccc3281ae3ed49c/von_sdk-1.3.1.tar.gz", hash = "sha256:777ab967288dc77bca1497423479a1c40f3f15afa1e329253c5505865654867d", size = 7430698, upload-time = "2026-09-28T21:11:36.326Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/af/8c/23905b83f1d8261525375ce252905217101f60732636ba70763a27e5befd/von_sdk-1.3.4.tar.gz", hash = "sha256:8d14cd0ebb07bf349da44774bc60fdfd45a4cfd94363d7eeda0797a8623a1cc1", size = 7447403, upload-time = "2026-09-30T00:22:37.133Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/00/dc/377a49a7b165821fbed6c5886e804bae99112bf8a1d46912d599612615f8/von_sdk-1.3.1-py3-none-any.whl", hash = "sha256:702303f82dc5a61edfbfff7057b809bd50bbe21afff92af239c40ddc90a5e079", size = 55585, upload-time = "2026-09-28T21:11:35.056Z" },
+    { url = "https://files.pythonhosted.org/packages/5d/0a/03502c0f19f61952a4c1cd122e6e55550b4b873f8cbb8e83e820ee4207b8/von_sdk-1.3.4-py3-none-any.whl", hash = "sha256:d59218291a76a3ff2c827eb59e0d7241f4d3f4f2c1a5c613037a4ced60064048", size = 63945, upload-time = "2026-09-30T00:22:35.581Z" },
 ]
 
 [[package]]
@@ -965,4 +965,4 @@ dependencies = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "von-sdk", specifier = "==1.3.1" }]
+requires-dist = [{ name = "von-sdk", specifier = "==1.3.4" }]

@@ -85,6 +85,27 @@ uv run python evals/probe_tasks.py      # short intent-style tasks
 uv run python evals/eval_evidence.py    # evidence gate vs regex (synthetic cases only)
 ```
 
+## Calibrate confidence (von 1.3.4+)
+
+The shipped calibration was fitted on Jev benchmark shapes and does not transfer to your
+prompts. Refit it on the probe labels (frozen weights, CPU, about a minute on an M1):
+
+```bash
+uv run von calibrate evals/calibration_labels.jsonl --device cpu
+```
+
+This writes `marker_calibration.json` next to the model checkpoint, and von uses it from then
+on. On the 38 probe labels a scalar temperature (T≈3.1) won and calibration error fell from 0.21
+to 0.13. **It changes how sure von claims to be, never which answer it picks**: accuracy is
+identical before and after. The practical gain is that wrong answers now come with low
+confidence (the German `passt, genau so` miss dropped from 0.92 to 0.21). Predictions tagged
+after calibration carry `"model": "von-1.3.4+cal"`. Once you have labelled your own shadow-mode
+prompts, rebuild the labels file from them and calibrate again.
+
+von's encoder is English-only, so German and mixed-language prompts get matched on tokens, not
+meaning (confirmed upstream in wfzyx/von#21). Wrong picks on auth and tool-rejection errors are a
+training gap tracked in wfzyx/von#22.
+
 Swap in a different Jev-compatible model and re-run to compare. Kev
 ([jaredpalmer/kev](https://github.com/jaredpalmer/kev)) serves the same API but its useful
 sizes need a 32 GB Mac.
